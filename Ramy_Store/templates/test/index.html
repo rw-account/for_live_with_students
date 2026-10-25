@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}تحديات المحاضرة | رامي ستور{% endblock %}
+
+{% block style %}
+<style>
+  .challenge-page { min-height: 55vh; padding: 3rem 0 4rem; }
+  .challenge-heading { color: #003f41; }
+  .challenge-card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 63, 65, .1);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .challenge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 63, 65, .16);
+  }
+  .challenge-number {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #008c96;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<main class="container challenge-page">
+  <header class="text-center mb-5">
+    <span class="badge rounded-pill text-bg-info mb-2">تدريب تعليمي</span>
+    <h1 class="challenge-heading fw-bold">تحديات المحاضرة</h1>
+    <p class="text-secondary mb-0">اختر تحدياً للانتقال إلى تفاصيله.</p>
+  </header>
+
+  <div class="row g-4">
+    {% for challenge in challenges %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <a href="{{ url_for('test.challenge_detail', challenge_id=challenge.id) }}"
+         class="card challenge-card h-100 text-decoration-none text-dark">
+        <div class="card-body d-flex gap-3 align-items-start">
+          <span class="challenge-number">{{ loop.index }}</span>
+          <div>
+            <h2 class="h5 fw-bold mb-2">التحدي {{ challenge.arabic_number }}</h2>
+            <p class="text-secondary mb-3">{{ challenge.summary }}</p>
+            {% if challenge.available %}
+            <span class="btn btn-outline-primary btn-sm">ابدأ التحدي</span>
+            {% else %}
+            <span class="badge text-bg-secondary">قريباً</span>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
