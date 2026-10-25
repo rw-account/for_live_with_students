@@ -32,7 +32,14 @@ def register():
             except db.IntegrityError:
                 error = f"المستخدم '{username}' مسجل بالفعل في النظام"
             else:
-                return redirect(url_for("auth.login"))
+                # تسجيل الدخول تلقائيا بعد انشاء الحساب
+                user = db.execute(
+                    'SELECT * FROM user WHERE username = ?', (username,)
+                ).fetchone()
+                session.clear()
+                session['user_id'] = user['id']
+                session.permanent = True
+                return redirect(url_for('index'))
 
         flash(error)
 

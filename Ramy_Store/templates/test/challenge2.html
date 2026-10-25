@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+
+{% block title %}التحدي الثاني | تحديات المحاضرة{% endblock %}
+
+{% block style %}
+<style>
+    .challenge-container {
+        direction: rtl;
+        max-width: 900px;
+        margin: 55px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        color: #1d2939;
+    }
+
+    .challenge-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 15px 45px rgba(16, 24, 40, 0.08);
+    }
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 45px 30px 40px;
+        text-align: center;
+        background: linear-gradient(145deg, #eef4ff, #ffffff 75%);
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .challenge-badge {
+        display: inline-block;
+        padding: 8px 15px;
+        background: #dbeafe;
+        color: #1d4ed8;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 22px;
+    }
+
+    .hero-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 86px;
+        height: 86px;
+        margin: 0 auto 22px;
+        border-radius: 25px;
+        background: #155eef;
+        color: #fff;
+        font-size: 39px;
+        box-shadow: 0 12px 25px rgba(21, 94, 239, 0.22);
+    }
+
+    .hero h1 {
+        margin: 0 0 14px;
+        color: #101828;
+        font-size: 30px;
+        line-height: 1.5;
+    }
+
+    .hero p {
+        max-width: 590px;
+        margin: 0 auto;
+        color: #667085;
+        font-size: 15px;
+        line-height: 2;
+    }
+
+    .card-content {
+        padding: 32px;
+    }
+
+    .account-panel {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 19px;
+        background: #f9fafb;
+        border: 1px solid #eaecf0;
+        border-radius: 15px;
+        margin-bottom: 32px;
+    }
+
+    .account-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 54px;
+        height: 54px;
+        background: #e0eaff;
+        border-radius: 14px;
+        font-size: 25px;
+    }
+
+    .account-info h2 {
+        margin: 0 0 8px;
+        color: #101828;
+        font-size: 17px;
+    }
+
+    .account-info p {
+        margin: 0;
+        color: #667085;
+        font-size: 14px;
+    }
+
+    .role-badge {
+        display: inline-block;
+        margin-right: 5px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: #eaecf0;
+        color: #344054;
+        font-family: monospace;
+        font-weight: bold;
+        direction: ltr;
+    }
+
+    .dashboard-section {
+        text-align: center;
+    }
+
+    .dashboard-section h2 {
+        color: #101828;
+        font-size: 22px;
+        margin: 0 0 12px;
+    }
+
+    .dashboard-description {
+        max-width: 570px;
+        margin: 0 auto 25px;
+        color: #667085;
+        font-size: 15px;
+        line-height: 2;
+    }
+
+    .dashboard-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        width: 100%;
+        min-height: 74px;
+        box-sizing: border-box;
+        padding: 18px 22px;
+        border-radius: 14px;
+        background: #155eef;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(21, 94, 239, 0.18);
+        transition: background 0.2s, transform 0.2s,
+                    box-shadow 0.2s;
+    }
+
+    .dashboard-button:hover {
+        background: #004eeb;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(21, 94, 239, 0.25);
+    }
+
+    .dashboard-button:focus-visible {
+        outline: 3px solid #84adff;
+        outline-offset: 4px;
+    }
+
+    .button-icon {
+        font-size: 25px;
+    }
+
+    .button-arrow {
+        font-size: 22px;
+        transition: transform 0.2s;
+    }
+
+    .dashboard-button:hover .button-arrow {
+        transform: translateX(-4px);
+    }
+
+    .hint-panel {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 28px;
+        padding: 18px;
+        background: #fffaeb;
+        border: 1px solid #fedf89;
+        border-radius: 13px;
+    }
+
+    .hint-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+
+    .hint-panel h3 {
+        margin: 0 0 6px;
+        color: #93370d;
+        font-size: 15px;
+    }
+
+    .hint-panel p {
+        margin: 0;
+        color: #93370d;
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .footer-note {
+        margin: 28px 0 0;
+        text-align: center;
+        color: #98a2b3;
+        font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .challenge-container {
+            margin: 20px auto;
+            padding: 12px;
+        }
+
+        .hero {
+            padding: 32px 20px;
+        }
+
+        .hero h1 {
+            font-size: 24px;
+        }
+
+        .hero-icon {
+            width: 72px;
+            height: 72px;
+            font-size: 33px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .account-panel {
+            padding: 15px;
+        }
+
+        .dashboard-section h2 {
+            font-size: 20px;
+        }
+
+        .dashboard-button {
+            min-height: 66px;
+            padding: 15px;
+            font-size: 16px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="challenge-container">
+    <main class="challenge-card">
+
+        <header class="hero">
+            <span class="challenge-badge">التحدي الثاني</span>
+
+            <div class="hero-icon" aria-hidden="true">🔐</div>
+
+            <h1>بوابة الإدارة</h1>
+
+            <p>
+                مرحبًا بك في بوابة الإدارة.
+                حاول الدخول إلى لوحة تحكم المسؤول، واكتشف كيف
+                يتعامل الموقع مع صلاحيات الوصول.
+            </p>
+        </header>
+
+        <div class="card-content">
+
+            <section class="account-panel">
+                <div class="account-avatar" aria-hidden="true">👤</div>
+
+                <div class="account-info">
+                    <h2>معلومات الحساب الحالي</h2>
+                    <p>
+                        نوع المستخدم:
+                        <span class="role-badge" dir="rtl">مستخدم عادي </span>
+                    </p>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h2>لوحة تحكم المسؤول</h2>
+
+                <p class="dashboard-description">
+                    هذه الصفحة مخصصة لإدارة النظام.
+                    اضغط على الزر أدناه لمحاولة الدخول إلى لوحة
+                    تحكم المسؤول.
+                </p>
+
+                <a
+                    class="dashboard-button"
+                    href="{{ url_for('test.challenge_2_dashboard', role='user') }}"
+                >
+                    <span class="button-icon" aria-hidden="true">🔑</span>
+                    <span>الدخول إلى لوحة تحكم المسؤول</span>
+                    <span class="button-arrow" aria-hidden="true">←</span>
+                </a>
+            </section>
+
+            <aside class="hint-panel">
+                <span class="hint-icon" aria-hidden="true">💡</span>
+
+                <div>
+                    <h3>تلميح أمني</h3>
+                    <p>
+                        إذا رُفض طلبك، افحص عنوان URL.
+                        لاحظ الباراميترات المرسلة مع الطلب، وفكّر
+                        في مدى موثوقية استخدامها لتحديد صلاحيات المستخدم.
+                    </p>
+                </div>
+            </aside>
+
+            <p class="footer-note">
+                بيئة تدريبية تعليمية — التحدي الثاني
+            </p>
+
+        </div>
+    </main>
+</div>
+
+{% endblock %}

@@ -53,10 +53,10 @@
 
     <form method="post">
       <div class="mb-3 text-end">
-        <input type="text" name="username" class="form-control" placeholder="اسم المستخدم" autofocus>
+        <input type="text" id="username" name="username" class="form-control" placeholder="اسم المستخدم" autocomplete="username" minlength="3" required autofocus>
       </div>
       <div class="mb-3 text-end">
-        <input type="password" name="password" class="form-control" placeholder="كلمة المرور">
+        <input type="text" id="password" name="password" class="form-control" placeholder="كلمة المرور" autocomplete="new-password" minlength="8" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">انشاء حساب</button>
     </form>
@@ -65,7 +65,38 @@
       <a href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold text-primary">تسجيل الدخول</a>
     </h6>
   </div>
-  
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    function validateUsername() {
+      const username = usernameInput.value.trim();
+      if (!username) {
+        usernameInput.setCustomValidity('الرجاء إدخال اسم المستخدم.');
+      } else if (username.length < 3) {
+        usernameInput.setCustomValidity('يجب أن يتكون اسم المستخدم من ثلاثة أحرف على الأقل.');
+      } else {
+        usernameInput.setCustomValidity('');
+      }
+    }
+
+    usernameInput.addEventListener('input', validateUsername);
+    validateUsername();
+
+    function validatePassword() {
+      if (!passwordInput.value.trim()) {
+        passwordInput.setCustomValidity('الرجاء إدخال كلمة المرور.');
+      } else if (passwordInput.value.length < 8) {
+        passwordInput.setCustomValidity('يجب أن تتكون كلمة المرور من ثمانية أحرف على الأقل.');
+      } else {
+        passwordInput.setCustomValidity('');
+      }
+    }
+
+    passwordInput.addEventListener('input', validatePassword);
+    validatePassword();
+  </script>
   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+
+{% block title %}التحدي الأول | تحديات المحاضرة{% endblock %}
+
+{% block style %}
+<style>
+    .challenge-container {
+        direction: rtl;
+        max-width: 850px;
+        margin: 50px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        color: #1d2939;
+    }
+
+    .product-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+    }
+
+    .product-image {
+        background: #f5f7fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        min-height: 350px;
+    }
+
+    .product-image img {
+        display: block;
+        max-width: 100%;
+        max-height: 350px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .product-details {
+        padding: 35px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .challenge-label {
+        display: inline-block;
+        width: fit-content;
+        background: #eaf2ff;
+        color: #2457b2;
+        padding: 7px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 18px;
+    }
+
+    .product-details h1 {
+        font-size: 27px;
+        margin: 0 0 12px;
+        color: #101828;
+    }
+
+    .product-description {
+        color: #667085;
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 22px;
+    }
+
+    .price-label {
+        color: #667085;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .product-price {
+        font-size: 34px;
+        font-weight: 800;
+        color: #155eef;
+        margin: 0 0 25px;
+        direction: ltr;
+        text-align: right;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .price-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 14px;
+        border: 1px solid #d0d5dd;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        background: #ffffff;
+        color: #101828;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        direction: ltr;
+        text-align: right;
+    }
+
+    .price-input:focus {
+        border-color: #155eef;
+        box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.12);
+    }
+
+    .price-input.invalid {
+        border-color: #d92d20;
+        box-shadow: 0 0 0 3px rgba(217, 45, 32, 0.08);
+    }
+
+    .error-message {
+        display: none;
+        color: #b42318;
+        background: #fef3f2;
+        border: 1px solid #fecdca;
+        border-radius: 9px;
+        padding: 12px;
+        margin-top: 12px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .error-message.visible {
+        display: block;
+    }
+
+    .error-message strong {
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .buy-button {
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        margin-top: 18px;
+        background: #155eef;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .buy-button:hover {
+        background: #004eeb;
+        transform: translateY(-1px);
+    }
+
+    .buy-button:active {
+        transform: translateY(0);
+    }
+
+    .security-note {
+        color: #667085;
+        font-size: 12px;
+        line-height: 1.8;
+        text-align: center;
+        margin-top: 18px;
+    }
+
+    @media (max-width: 650px) {
+        .challenge-container {
+            margin: 20px auto;
+            padding: 12px;
+        }
+
+        .product-card {
+            grid-template-columns: 1fr;
+        }
+
+        .product-image {
+            min-height: 230px;
+            padding: 20px;
+        }
+
+        .product-image img {
+            max-height: 260px;
+        }
+
+        .product-details {
+            padding: 25px 22px;
+        }
+
+        .product-details h1 {
+            font-size: 24px;
+        }
+
+        .product-price {
+            font-size: 30px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="challenge-container">
+    <div class="product-card">
+
+        <div class="product-image">
+            <img
+                src="{{ url_for('static', filename='images/mobile_phones/MqddIg0PnYGt.jpg') }}"
+                alt="هاتف آيفون"
+            >
+        </div>
+
+        <div class="product-details">
+            <span class="challenge-label">التحدي الأول</span>
+
+            <h1>هاتف آيفون</h1>
+
+            <p class="product-description">
+                أدخل سعر الهاتف لإتمام عملية الشراء.
+                انتبه إلى السعر المطلوب قبل المتابعة.
+            </p>
+
+            <span class="price-label">سعر المنتج</span>
+            <p class="product-price">1200 $</p>
+
+            <form id="purchaseForm" method="POST">
+                <label class="form-label" for="price">
+                    السعر الذي تريد الدفع به
+                </label>
+
+                <input
+                    class="price-input"
+                    type="number"
+                    id="price"
+                    name="price"
+                    step="any"
+                    placeholder="مثال: 1200"
+                    required
+                >
+
+                <div
+                    id="errorMessage"
+                    class="error-message"
+                    role="alert"
+                    aria-live="polite"
+                >
+                    <strong>⚠️ سعر غير صحيح!</strong>
+                    يجب أن يكون سعر الآيفون 1200 دولار بالضبط.
+                </div>
+
+                <button class="buy-button" type="submit">
+                    شراء الآيفون
+                </button>
+            </form>
+
+            <p class="security-note">
+                يرجى إدخال السعر المحدد لإكمال العملية.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('purchaseForm');
+    const priceInput = document.getElementById('price');
+    const errorMessage = document.getElementById('errorMessage');
+
+    function validatePrice() {
+        const isValid = priceInput.value !== ''
+            && Number(priceInput.value) === 1200;
+
+        errorMessage.classList.toggle('visible', !isValid);
+        priceInput.classList.toggle('invalid', !isValid);
+        priceInput.setAttribute('aria-invalid', String(!isValid));
+
+        return isValid;
+    }
+
+    priceInput.addEventListener('input', function () {
+        if (priceInput.value === '') {
+            errorMessage.classList.remove('visible');
+            priceInput.classList.remove('invalid');
+            priceInput.setAttribute('aria-invalid', 'false');
+            return;
+        }
+
+        validatePrice();
+    });
+
+    form.addEventListener('submit', function (event) {
+        if (!validatePrice()) {
+            event.preventDefault();
+            priceInput.focus();
+        }
+    });
+</script>
+
+{% endblock %}
