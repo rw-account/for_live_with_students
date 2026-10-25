@@ -40,7 +40,9 @@
 <body>
 
   <!-- صورة الموقع -->
-  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="شعار الموقع" class="site-logo">
+  <a href="{{ url_for('store.index') }}">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="شعار الموقع" class="site-logo">
+  </a>
 
   <!-- مربع انشاء حساب  -->
   <div class="login-box text-center">
