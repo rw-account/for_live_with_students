@@ -61,6 +61,11 @@
           <img src="{{ url_for('static', filename='icons/cart-plus.svg') }}" alt="cart-icon" width="32" height="32"
             title="السلة الخاصة بك">
         </a>
+        <div class="d-flex align-items-center ms-0">
+          <span class="me-2">{{ g.user['username'] }}</span>
+          <img src="{{ url_for('static', filename='images/user_avatar.png') }}" alt="avatar" width="40" height="40"
+            class="rounded-circle">
+        </div>
         <a href="{{ url_for('auth.logout') }}" class="btn btn-danger rounded-3 text-nowrap ms-2 me-3" style=" color: #ffffff; border: none; 
             padding: 7px 14px; font-size: 0.95rem; height: 38px;">تسجيل الخروج</a>
       </ul>
