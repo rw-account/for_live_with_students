@@ -185,32 +185,50 @@
     }
 
     .hint-panel {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 0.9fr);
+        align-items: center;
+        gap: 24px;
         margin-top: 28px;
-        padding: 18px;
-        background: #fffaeb;
-        border: 1px solid #fedf89;
-        border-radius: 13px;
+        padding: 22px;
+        background: #fff;
+        border: 1px solid #d0d5dd;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
     }
 
-    .hint-icon {
-        font-size: 22px;
-        flex-shrink: 0;
+    .hint-copy {
+        grid-column: 1;
     }
 
     .hint-panel h3 {
-        margin: 0 0 6px;
-        color: #93370d;
-        font-size: 15px;
+        margin: 0 0 10px;
+        color: #101828;
+        font-size: 19px;
     }
 
     .hint-panel p {
         margin: 0;
-        color: #93370d;
-        font-size: 14px;
-        line-height: 1.9;
+        color: #475467;
+        font-size: 15px;
+        line-height: 2;
+    }
+
+    .hint-image-frame {
+        grid-column: 2;
+        margin: 0;
+        padding: 8px;
+        overflow: hidden;
+        background: #f9fafb;
+        border: 1px solid #eaecf0;
+        border-radius: 12px;
+    }
+
+    .hint-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 7px;
     }
 
     .footer-note {
@@ -256,6 +274,17 @@
             min-height: 66px;
             padding: 15px;
             font-size: 16px;
+        }
+
+        .hint-panel {
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 16px;
+        }
+
+        .hint-copy,
+        .hint-image-frame {
+            grid-column: 1;
         }
     }
 </style>
@@ -314,16 +343,21 @@
             </section>
 
             <aside class="hint-panel">
-                <span class="hint-icon" aria-hidden="true">💡</span>
-
-                <div>
-                    <h3>تلميح أمني</h3>
+                <div class="hint-copy">
+                    <h3>تلميح</h3>
                     <p>
-                        إذا رُفض طلبك، افحص عنوان URL.
-                        لاحظ الباراميترات المرسلة مع الطلب، وفكّر
-                        في مدى موثوقية استخدامها لتحديد صلاحيات المستخدم.
+                        توضّح الصورة معنى كلمتي <span dir="ltr">user</span> و<span dir="ltr">admin </span>.
                     </p>
                 </div>
+
+                <figure class="hint-image-frame">
+                    <img
+                        class="hint-image"
+                        src="{{ url_for('static', filename='images/hint.png') }}"
+                        alt="ترجمة user إلى مستخدم وadmin إلى مسؤول"
+                        loading="lazy"
+                    >
+                </figure>
             </aside>
 
             <p class="footer-note">
