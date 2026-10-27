@@ -7,7 +7,7 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY='add91a882b0614ce6ca761be1f2a8c7c5c067eb2f509f53c5976193a76ae91cd',
         DATABASE=os.path.join(app.instance_path, 'Ramy_Store.sqlite'),
     )
 

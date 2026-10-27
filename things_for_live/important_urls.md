@@ -7,8 +7,3 @@ https://github.com/rw-account/for_live_with_students/blob/main/how%20to%20instal
 https://ramy2.pythonanywhere.com/
 
 ***
-
-رابط اضافة تعديل الكوكي:
-https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm
-
-***
