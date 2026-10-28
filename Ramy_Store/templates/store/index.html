@@ -3,14 +3,10 @@
 {% block style %}
 <style>
   .hero-section {
-    /* ضع رابط صورتك هنا */
     background-image: url("{{ url_for('static', filename='images/HeroImage.png') }}");
-    /* تغطي كل مساحة القسم */
     background-size: cover;
-    /* الجزء المهم في الوسط */
     background-position: center;
     width: 100%;
-    /* ارتفاع القسم 80% من الشاشة */
     height: 80vh;
     display: flex;
     align-items: center;
