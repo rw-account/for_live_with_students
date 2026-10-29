@@ -197,6 +197,49 @@
         box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
     }
 
+    .hint-disclosure {
+        margin-top: 28px;
+    }
+
+    .hint-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 22px;
+        color: #854d0e;
+        background: #fffbeb;
+        border: 1px solid #fcd34d;
+        border-radius: 14px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        list-style: none;
+    }
+
+    .hint-trigger::-webkit-details-marker {
+        display: none;
+    }
+
+    .hint-trigger::after {
+        content: "＋";
+        flex-shrink: 0;
+        font-size: 22px;
+    }
+
+    .hint-disclosure[open] .hint-trigger::after {
+        content: "−";
+    }
+
+    .hint-trigger:focus-visible {
+        outline: 3px solid #fbbf24;
+        outline-offset: 3px;
+    }
+
+    .hint-disclosure .hint-panel {
+        margin-top: 12px;
+    }
+
     .hint-copy {
         grid-column: 1;
     }
@@ -339,23 +382,29 @@
                 </a>
             </section>
 
-            <aside class="hint-panel">
-                <div class="hint-copy">
-                    <h3>تلميح خاص بالتحدي</h3>
-                    <p>
-                        توضّح الصورة معنى كلمتي <span dir="ltr">user</span> و<span dir="ltr">admin </span>.
-                    </p>
-                </div>
+            <details class="hint-disclosure">
+                <summary class="hint-trigger">
+                    <span>💡 هل تحتاج إلى تلميح؟ اضغط هنا لإظهاره</span>
+                </summary>
 
-                <figure class="hint-image-frame">
-                    <img
-                        class="hint-image"
-                        src="{{ url_for('static', filename='images/hint.png') }}"
-                        alt="ترجمة user إلى مستخدم وadmin إلى مسؤول"
-                        loading="lazy"
-                    >
-                </figure>
-            </aside>
+                <aside class="hint-panel">
+                    <div class="hint-copy">
+                        <h3>تلميح خاص بالتحدي</h3>
+                        <p>
+                            توضّح الصورة معنى كلمتي <span dir="ltr">user</span> و<span dir="ltr">admin </span>.
+                        </p>
+                    </div>
+
+                    <figure class="hint-image-frame">
+                        <img
+                            class="hint-image"
+                            src="{{ url_for('static', filename='images/hint.png') }}"
+                            alt="ترجمة user إلى مستخدم وadmin إلى مسؤول"
+                            loading="lazy"
+                        >
+                    </figure>
+                </aside>
+            </details>
 
             <p class="footer-note">
                 بيئة تدريبية تعليمية — التحدي الثاني

@@ -14,6 +14,11 @@ def challenge_1():
     if request.method == 'POST':
         price = request.form.get('price', '')
 
+        # جزئية الحماية: التحقق من أن السعر المرسل هو 1200 دولار فقط
+        secure = request.values.get('secure', 'No')
+        if secure.casefold() == 'yes' and price != '1200':
+            abort(403, description='الحماية شغالة على جانب السرفر وتمنع ادخال سعر غير 1200 دولار')
+
         return f"""
         <!DOCTYPE html>
         <html lang="ar" dir="rtl">
